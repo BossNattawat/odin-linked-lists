@@ -114,6 +114,45 @@ class LinkedList{
         }
         return text
     }
+
+    insertAt(value, index){
+        let CurrentNode = this.head
+        let PreviouseNode = null
+
+        if(this.head === null){
+            this.head === this.prepend(value)
+        }
+
+        for(let i = 0; i < index; i++){
+            PreviouseNode = CurrentNode
+            CurrentNode = CurrentNode.next
+            if(CurrentNode === null){
+                break
+            }
+        }
+
+        let temp = new Node(value)
+        PreviouseNode.next = temp
+        temp.next = CurrentNode
+
+    }
+
+    removeAt(index){
+
+        let CurrentNode = this.head
+        let PreviouseNode = null
+
+        for(let i = 0; i < index; i++){
+            PreviouseNode = CurrentNode
+            CurrentNode = CurrentNode.next
+            if(CurrentNode === null){
+                break
+            }
+        }
+
+        PreviouseNode.next = CurrentNode.next
+
+    }
 }
 
 let list = new LinkedList()
@@ -125,14 +164,28 @@ list.append("Grape")
 list.append("Carrot")
 
 console.log(list);
+
 console.log(list.size());
+
 console.log(list.headLinkList());
+
 console.log(list.tailLinkList().data);
+
 console.log(list.at(1));
+
 console.log(list.toString());
+
 list.pop()
 console.log(list);
+
 console.log(list.contains("Orange"));
 console.log(list.find("Orange"));
+
 list.prepend("Cherry")
+console.log(list);
+
+list.insertAt("Pineapple", 2)
+console.log(list);
+
+list.removeAt(2)
 console.log(list);
